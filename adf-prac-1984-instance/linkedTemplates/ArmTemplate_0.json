@@ -84,6 +84,9 @@
 					"referenceName": "ls_adfbyexample_prac",
 					"type": "LinkedServiceReference"
 				},
+				"folder": {
+					"name": "chapter02"
+				},
 				"annotations": [],
 				"type": "Binary",
 				"typeProperties": {
@@ -105,6 +108,9 @@
 				"linkedServiceName": {
 					"referenceName": "ls_adfbyexample_prac",
 					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "chapter02"
 				},
 				"annotations": [],
 				"type": "Binary",
@@ -184,6 +190,9 @@
 				],
 				"policy": {
 					"elapsedTimeMetric": {}
+				},
+				"folder": {
+					"name": "chapter02"
 				},
 				"annotations": [],
 				"lastPublishTime": "2024-03-20T09:38:43Z"
