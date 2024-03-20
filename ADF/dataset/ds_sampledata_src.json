@@ -1,0 +1,19 @@
+{
+	"name": "ds_sampledata_src",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_adfbyexample_prac",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Binary",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "azure-data-factory-by-example-main.zip",
+				"fileSystem": "landing"
+			}
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}
