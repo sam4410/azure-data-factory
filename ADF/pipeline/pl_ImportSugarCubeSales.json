@@ -4,6 +4,7 @@
 		"activities": [
 			{
 				"name": "Import sales data",
+				"description": "copy json data for SugarCube",
 				"type": "Copy",
 				"dependsOn": [],
 				"policy": {
