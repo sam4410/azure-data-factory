@@ -1,0 +1,24 @@
+{
+	"name": "ds_ABS_PARQUET_HandyCandy",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_adfbyexample_prac",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "chapter03"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "HandyCandy.parquet",
+				"folderPath": "datalake",
+				"fileSystem": "output"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": []
+	}
+}
