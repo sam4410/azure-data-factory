@@ -11,6 +11,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'accountKey' of 'ls_adfbyexample_prac'"
 		},
+		"ls_azuresql_db_sink_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'ls_azuresql_db_sink'"
+		},
 		"ls_adfbyexample_prac_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://myadlsaccount1984sa.dfs.core.windows.net/"
@@ -44,6 +48,9 @@
 					},
 					"ls_adfbyexample_prac_accountKey": {
 						"value": "[parameters('ls_adfbyexample_prac_accountKey')]"
+					},
+					"ls_azuresql_db_sink_connectionString": {
+						"value": "[parameters('ls_azuresql_db_sink_connectionString')]"
 					},
 					"ls_adfbyexample_prac_properties_typeProperties_url": {
 						"value": "[parameters('ls_adfbyexample_prac_properties_typeProperties_url')]"
