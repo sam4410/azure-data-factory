@@ -1,0 +1,18 @@
+{
+	"name": "ds_sampledata_sink",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_adfbyexample_prac",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Binary",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileSystem": "sampledata"
+			}
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

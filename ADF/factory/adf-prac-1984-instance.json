@@ -1,0 +1,9 @@
+{
+	"name": "adf-prac-1984-instance",
+	"location": "eastus2",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "90b68a59-65ec-4277-b8c0-db455083ab53",
+		"tenantId": "2918ecfd-90a0-4f02-a2a9-ce18aff25489"
+	}
+}
