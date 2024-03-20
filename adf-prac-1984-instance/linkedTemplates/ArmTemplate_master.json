@@ -11,15 +11,7 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'accountKey' of 'ls_adfbyexample_prac'"
 		},
-		"ls_adfbyexample_prac2_accountKey": {
-			"type": "secureString",
-			"metadata": "Secure string for 'accountKey' of 'ls_adfbyexample_prac2'"
-		},
 		"ls_adfbyexample_prac_properties_typeProperties_url": {
-			"type": "string",
-			"defaultValue": "https://myadlsaccount1984sa.dfs.core.windows.net/"
-		},
-		"ls_adfbyexample_prac2_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://myadlsaccount1984sa.dfs.core.windows.net/"
 		},
@@ -53,14 +45,8 @@
 					"ls_adfbyexample_prac_accountKey": {
 						"value": "[parameters('ls_adfbyexample_prac_accountKey')]"
 					},
-					"ls_adfbyexample_prac2_accountKey": {
-						"value": "[parameters('ls_adfbyexample_prac2_accountKey')]"
-					},
 					"ls_adfbyexample_prac_properties_typeProperties_url": {
 						"value": "[parameters('ls_adfbyexample_prac_properties_typeProperties_url')]"
-					},
-					"ls_adfbyexample_prac2_properties_typeProperties_url": {
-						"value": "[parameters('ls_adfbyexample_prac2_properties_typeProperties_url')]"
 					}
 				}
 			},
