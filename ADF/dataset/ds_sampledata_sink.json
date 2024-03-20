@@ -2,7 +2,7 @@
 	"name": "ds_sampledata_sink",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "ls_adfbyexample_prac",
+			"referenceName": "ls_adfbyexample_prac2",
 			"type": "LinkedServiceReference"
 		},
 		"annotations": [],
