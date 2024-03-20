@@ -47,7 +47,11 @@
 									"recursive": true
 								},
 								"formatSettings": {
-									"type": "BinaryReadSettings"
+									"type": "BinaryReadSettings",
+									"compressionProperties": {
+										"type": "ZipDeflateReadSettings",
+										"preserveZipFileNameAsFolder": false
+									}
 								}
 							},
 							"sink": {
@@ -123,6 +127,10 @@
 						"type": "AzureBlobFSLocation",
 						"fileName": "azure-data-factory-by-example-main.zip",
 						"fileSystem": "landing"
+					},
+					"compression": {
+						"type": "ZipDeflate",
+						"level": "Optimal"
 					}
 				}
 			},
