@@ -1,0 +1,15 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "adf-prac-1984-instance"
+		},
+		"ls_adfbyexample_prac_accountKey": {
+			"value": ""
+		},
+		"ls_adfbyexample_prac_properties_typeProperties_url": {
+			"value": "https://myadlsaccount1984sa.dfs.core.windows.net/"
+		}
+	}
+}
