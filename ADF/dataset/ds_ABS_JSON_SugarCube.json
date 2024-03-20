@@ -13,8 +13,8 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"fileName": "April.json",
-				"folderPath": "azure-data-factory-by-example-main/SampleData/SugarCube/2020/Q2",
+				"fileName": "*.json",
+				"folderPath": "azure-data-factory-by-example-main/SampleData/SugarCube",
 				"fileSystem": "sampledata"
 			}
 		},
