@@ -8,7 +8,13 @@
 		"ls_adfbyexample_prac_accountKey": {
 			"value": ""
 		},
+		"ls_adfbyexample_prac2_accountKey": {
+			"value": ""
+		},
 		"ls_adfbyexample_prac_properties_typeProperties_url": {
+			"value": "https://myadlsaccount1984sa.dfs.core.windows.net/"
+		},
+		"ls_adfbyexample_prac2_properties_typeProperties_url": {
 			"value": "https://myadlsaccount1984sa.dfs.core.windows.net/"
 		}
 	}

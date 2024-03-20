@@ -11,7 +11,15 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'accountKey' of 'ls_adfbyexample_prac'"
 		},
+		"ls_adfbyexample_prac2_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'ls_adfbyexample_prac2'"
+		},
 		"ls_adfbyexample_prac_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://myadlsaccount1984sa.dfs.core.windows.net/"
+		},
+		"ls_adfbyexample_prac2_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://myadlsaccount1984sa.dfs.core.windows.net/"
 		}
@@ -91,7 +99,7 @@
 			"apiVersion": "2018-06-01",
 			"properties": {
 				"linkedServiceName": {
-					"referenceName": "ls_adfbyexample_prac",
+					"referenceName": "ls_adfbyexample_prac2",
 					"type": "LinkedServiceReference"
 				},
 				"annotations": [],
@@ -104,7 +112,7 @@
 				}
 			},
 			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/ls_adfbyexample_prac')]"
+				"[concat(variables('factoryId'), '/linkedServices/ls_adfbyexample_prac2')]"
 			]
 		},
 		{
@@ -142,6 +150,30 @@
 					"accountKey": {
 						"type": "SecureString",
 						"value": "[parameters('ls_adfbyexample_prac_accountKey')]"
+					}
+				},
+				"connectVia": {
+					"referenceName": "AutoResolveIntegrationRuntime",
+					"type": "IntegrationRuntimeReference"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/integrationRuntimes/AutoResolveIntegrationRuntime')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ls_adfbyexample_prac2')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"description": "linked service for ADLS Gen2 storage account created for sink dataset",
+				"annotations": [],
+				"type": "AzureBlobFS",
+				"typeProperties": {
+					"url": "[parameters('ls_adfbyexample_prac2_properties_typeProperties_url')]",
+					"accountKey": {
+						"type": "SecureString",
+						"value": "[parameters('ls_adfbyexample_prac2_accountKey')]"
 					}
 				},
 				"connectVia": {
