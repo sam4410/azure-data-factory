@@ -127,7 +127,7 @@
 			"properties": {
 				"activities": [
 					{
-						"name": "Copy sample data",
+						"name": "Copy_dlk",
 						"description": "copying sample data from landing to sampledata container and unzip it.",
 						"type": "Copy",
 						"dependsOn": [],
