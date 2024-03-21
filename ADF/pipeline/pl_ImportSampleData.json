@@ -1,5 +1,5 @@
 {
-	"name": "ImportSampleData",
+	"name": "pl_ImportSampleData",
 	"properties": {
 		"activities": [
 			{
@@ -23,7 +23,11 @@
 							"recursive": true
 						},
 						"formatSettings": {
-							"type": "BinaryReadSettings"
+							"type": "BinaryReadSettings",
+							"compressionProperties": {
+								"type": "ZipDeflateReadSettings",
+								"preserveZipFileNameAsFolder": false
+							}
 						}
 					},
 					"sink": {
@@ -48,6 +52,9 @@
 				]
 			}
 		],
+		"folder": {
+			"name": "chapter02"
+		},
 		"annotations": [],
 		"lastPublishTime": "2024-03-20T09:38:43Z"
 	},
