@@ -207,6 +207,63 @@
 			]
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/ds_ABS_JSON_HandyCandy')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "ls_adfbyexample_prac",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "chapter03"
+				},
+				"annotations": [],
+				"type": "Json",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"folderPath": "azure-data-factory-by-example-main/SampleData/HandyCandy",
+						"fileSystem": "sampledata"
+					}
+				},
+				"schema": {
+					"type": "object",
+					"properties": {
+						"Month": {
+							"type": "string"
+						},
+						"Company": {
+							"type": "string"
+						},
+						"Sales": {
+							"type": "array",
+							"items": {
+								"type": "object",
+								"properties": {
+									"Product": {
+										"type": "string"
+									},
+									"ManufacturerProductCode": {
+										"type": "string"
+									},
+									"Units": {
+										"type": "integer"
+									},
+									"Value": {
+										"type": "number"
+									}
+								}
+							}
+						}
+					}
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/ls_adfbyexample_prac')]"
+			]
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/ds_ABS_JSON_SugarCube')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -259,6 +316,35 @@
 						}
 					}
 				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/ls_adfbyexample_prac')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ds_ABS_PARQUET_HandyCandy')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "ls_adfbyexample_prac",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "chapter03"
+				},
+				"annotations": [],
+				"type": "Parquet",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"fileName": "HandyCandy.parquet",
+						"folderPath": "datalake",
+						"fileSystem": "output"
+					},
+					"compressionCodec": "snappy"
+				},
+				"schema": []
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/ls_adfbyexample_prac')]"
@@ -371,92 +457,6 @@
 						"level": "Optimal"
 					}
 				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/ls_adfbyexample_prac')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/ds_ABS_JSON_HandyCandy')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "ls_adfbyexample_prac",
-					"type": "LinkedServiceReference"
-				},
-				"folder": {
-					"name": "chapter03"
-				},
-				"annotations": [],
-				"type": "Json",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobFSLocation",
-						"folderPath": "azure-data-factory-by-example-main/SampleData/HandyCandy",
-						"fileSystem": "sampledata"
-					}
-				},
-				"schema": {
-					"type": "object",
-					"properties": {
-						"Month": {
-							"type": "string"
-						},
-						"Company": {
-							"type": "string"
-						},
-						"Sales": {
-							"type": "array",
-							"items": {
-								"type": "object",
-								"properties": {
-									"Product": {
-										"type": "string"
-									},
-									"ManufacturerProductCode": {
-										"type": "string"
-									},
-									"Units": {
-										"type": "integer"
-									},
-									"Value": {
-										"type": "number"
-									}
-								}
-							}
-						}
-					}
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/ls_adfbyexample_prac')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/ds_ABS_PARQUET_HandyCandy')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "ls_adfbyexample_prac",
-					"type": "LinkedServiceReference"
-				},
-				"folder": {
-					"name": "chapter03"
-				},
-				"annotations": [],
-				"type": "Parquet",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobFSLocation",
-						"fileName": "HandyCandy.parquet",
-						"folderPath": "datalake",
-						"fileSystem": "output"
-					},
-					"compressionCodec": "snappy"
-				},
-				"schema": []
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/ls_adfbyexample_prac')]"
@@ -702,7 +702,7 @@
 								"storeSettings": {
 									"type": "AzureBlobFSReadSettings",
 									"recursive": true,
-									"wildcardFolderPath": "azure-data-factory-by-example-main/ SampleData/SugarCube",
+									"wildcardFolderPath": "azure-data-factory-by-example-main/SampleData/SugarCube",
 									"wildcardFileName": "*.json",
 									"enablePartitionDiscovery": false
 								},
@@ -723,6 +723,42 @@
 								"mappings": [
 									{
 										"source": {
+											"path": "[['Product']"
+										},
+										"sink": {
+											"name": "Product",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['ManufacturerProductCode']"
+										},
+										"sink": {
+											"name": "ManufacturerProductCode",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['Units']"
+										},
+										"sink": {
+											"name": "UnitsSold",
+											"type": "Int32"
+										}
+									},
+									{
+										"source": {
+											"path": "[['Value']"
+										},
+										"sink": {
+											"name": "SalesValueUSD",
+											"type": "Decimal"
+										}
+									},
+									{
+										"source": {
 											"path": "$['Month']"
 										},
 										"sink": {
@@ -738,44 +774,10 @@
 											"name": "Retailer",
 											"type": "String"
 										}
-									},
-									{
-										"source": {
-											"path": "$['Sales'][0]['Product']"
-										},
-										"sink": {
-											"name": "Product",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['Sales'][0]['ManufacturerProductCode']"
-										},
-										"sink": {
-											"name": "ManufacturerProductCode",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['Sales'][0]['Units']"
-										},
-										"sink": {
-											"name": "UnitsSold",
-											"type": "Int32"
-										}
-									},
-									{
-										"source": {
-											"path": "$['Sales'][0]['Value']"
-										},
-										"sink": {
-											"name": "SalesValueUSD",
-											"type": "Decimal"
-										}
 									}
-								]
+								],
+								"collectionReference": "$['Sales']",
+								"mapComplexValuesToString": false
 							}
 						},
 						"inputs": [
@@ -910,7 +912,7 @@
 								"storeSettings": {
 									"type": "AzureBlobFSReadSettings",
 									"recursive": true,
-									"wildcardFolderPath": "azure-data-factory-by-example-main/SampleData/ HandyCandy",
+									"wildcardFolderPath": "azure-data-factory-by-example-main/SampleData/HandyCandy",
 									"wildcardFileName": "*.json",
 									"enablePartitionDiscovery": false
 								},
@@ -934,53 +936,51 @@
 								"mappings": [
 									{
 										"source": {
-											"path": "$['Month']"
+											"path": "[['Product']"
 										},
 										"sink": {
-											"name": "Month"
+											"name": "Product",
+											"type": "String"
 										}
 									},
 									{
 										"source": {
-											"path": "$['Company']"
+											"path": "[['Price']"
 										},
 										"sink": {
-											"name": "Company"
+											"name": "Price",
+											"type": "Single"
 										}
 									},
 									{
 										"source": {
-											"path": "$['Sales'][0]['Product']"
+											"path": "$['TransactionId']"
 										},
 										"sink": {
-											"name": "Product"
+											"name": "TransactionId",
+											"type": "Guid"
 										}
 									},
 									{
 										"source": {
-											"path": "$['Sales'][0]['ManufacturerProductCode']"
+											"path": "$['TransactionDate']"
 										},
 										"sink": {
-											"name": "ManufacturerProductCode"
+											"name": "TransactionDate",
+											"type": "DateTime"
 										}
 									},
 									{
 										"source": {
-											"path": "$['Sales'][0]['Units']"
+											"path": "$['StoreId']"
 										},
 										"sink": {
-											"name": "Units"
-										}
-									},
-									{
-										"source": {
-											"path": "$['Sales'][0]['Value']"
-										},
-										"sink": {
-											"name": "Value"
+											"name": "StoreId",
+											"type": "Int16"
 										}
 									}
-								]
+								],
+								"collectionReference": "$['Items']"
 							}
 						},
 						"inputs": [
