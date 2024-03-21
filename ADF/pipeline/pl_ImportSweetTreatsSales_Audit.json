@@ -6,7 +6,14 @@
 			{
 				"name": "Import sales data",
 				"type": "Copy",
-				"dependsOn": [],
+				"dependsOn": [
+					{
+						"activity": "Lookup RunSeqNo",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
 				"policy": {
 					"timeout": "0.12:00:00",
 					"retry": 0,
@@ -24,9 +31,9 @@
 								"value": "$$FILEPATH"
 							},
 							{
-								"name": "PipelineRunId",
+								"name": "RunSeqNo",
 								"value": {
-									"value": "@pipeline().RunId",
+									"value": "@activity('Lookup RunSeqNo').output.firstRow.RunSeqNo",
 									"type": "Expression"
 								}
 							}
@@ -178,7 +185,7 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"storedProcedureName": "[dbo].[LogPipelineExecution]",
+					"storedProcedureName": "[dbo].[LogPipelineEnd]",
 					"storedProcedureParameters": {
 						"FilesRead": {
 							"value": {
@@ -187,23 +194,16 @@
 							},
 							"type": "Int32"
 						},
-						"PipelineRunId": {
-							"value": {
-								"value": "@pipeline().RunId",
-								"type": "Expression"
-							},
-							"type": "Guid"
-						},
 						"RowsCopied": {
 							"value": {
-								"value": "@activity('Import sales data').output.rowsRead",
+								"value": "@activity('Import sales data').output.rowsCopied",
 								"type": "Expression"
 							},
 							"type": "Int32"
 						},
 						"RowsRead": {
 							"value": {
-								"value": "@activity('Import sales data').output.rowsCopied",
+								"value": "@activity('Import sales data').output.rowsRead",
 								"type": "Expression"
 							},
 							"type": "Int32"
@@ -214,12 +214,68 @@
 								"type": "Expression"
 							},
 							"type": "DateTime"
+						},
+						"RunSeqNo": {
+							"value": {
+								"value": "@activity('Lookup RunSeqNo').output.firstRow.RunSeqNo",
+								"type": "Expression"
+							},
+							"type": "Int32"
+						},
+						"RunStatus": {
+							"value": "Done",
+							"type": "String"
 						}
 					}
 				},
 				"linkedServiceName": {
 					"referenceName": "ls_azuresql_db_sink",
 					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "Lookup RunSeqNo",
+				"type": "Lookup",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "AzureSqlSource",
+						"sqlReaderStoredProcedureName": "[dbo].[LogPipelineStart]",
+						"storedProcedureParameters": {
+							"Comments": {
+								"type": "String",
+								"value": null
+							},
+							"PipelineRunId": {
+								"type": "Guid",
+								"value": {
+									"value": "@pipeline().RunId",
+									"type": "Expression"
+								}
+							},
+							"RunStartDateTime": {
+								"type": "DateTime",
+								"value": {
+									"value": "@utcNow()",
+									"type": "Expression"
+								}
+							}
+						},
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"dataset": {
+						"referenceName": "ds_azsqldb_salesLoad",
+						"type": "DatasetReference"
+					}
 				}
 			}
 		],
