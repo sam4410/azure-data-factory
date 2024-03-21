@@ -21,7 +21,7 @@
 						"storeSettings": {
 							"type": "AzureBlobFSReadSettings",
 							"recursive": true,
-							"wildcardFolderPath": "azure-data-factory-by-example-main/ SampleData/SugarCube/*",
+							"wildcardFolderPath": "azure-data-factory-by-example-main/SampleData/SugarCube",
 							"wildcardFileName": "*.json",
 							"enablePartitionDiscovery": false
 						},
@@ -94,7 +94,8 @@
 									"type": "Decimal"
 								}
 							}
-						]
+						],
+						"collectionReference": "$['Sales']"
 					}
 				},
 				"inputs": [
