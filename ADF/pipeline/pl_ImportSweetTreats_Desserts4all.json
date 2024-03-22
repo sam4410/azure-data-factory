@@ -48,7 +48,7 @@
 					"waitOnCompletion": true,
 					"parameters": {
 						"WildcardFolderPath": {
-							"value": "@string('azure-data-factory-by-example-main/SampleData/Dessert4all')",
+							"value": "@string('azure-data-factory-by-example-main/SampleData/Desserts4All')",
 							"type": "Expression"
 						},
 						"WildcardFileName": "*.csv"
