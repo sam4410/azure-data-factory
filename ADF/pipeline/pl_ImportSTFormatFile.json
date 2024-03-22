@@ -41,14 +41,6 @@
 						"storeSettings": {
 							"type": "AzureBlobFSReadSettings",
 							"recursive": true,
-							"wildcardFolderPath": {
-								"value": "@pipeline().parameters.WildcardFolderPath",
-								"type": "Expression"
-							},
-							"wildcardFileName": {
-								"value": "@pipeline().parameters.WildcardFileName",
-								"type": "Expression"
-							},
 							"enablePartitionDiscovery": false
 						},
 						"formatSettings": {
@@ -167,8 +159,14 @@
 								"value": "@string('sampledata')",
 								"type": "Expression"
 							},
-							"Directory": ".",
-							"File": "."
+							"Directory": {
+								"value": "@pipeline().parameters.Directory",
+								"type": "Expression"
+							},
+							"File": {
+								"value": "@pipeline().parameters.File",
+								"type": "Expression"
+							}
 						}
 					}
 				],
@@ -266,7 +264,10 @@
 						"storedProcedureParameters": {
 							"Comments": {
 								"type": "String",
-								"value": null
+								"value": {
+									"value": "Pipeline @{pipeline().Pipeline} executed in @{pipeline().DataFactory} - loading @{pipeline().parameters.Directory}/@{pipeline().parameters.File}",
+									"type": "Expression"
+								}
 							},
 							"PipelineRunId": {
 								"type": "Guid",
@@ -318,12 +319,11 @@
 			}
 		],
 		"parameters": {
-			"WildcardFolderPath": {
+			"Directory": {
 				"type": "string"
 			},
-			"WildcardFileName": {
-				"type": "string",
-				"defaultValue": "*.csv"
+			"File": {
+				"type": "string"
 			}
 		},
 		"variables": {
