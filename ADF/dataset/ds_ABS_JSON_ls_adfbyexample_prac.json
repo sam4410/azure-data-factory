@@ -1,0 +1,45 @@
+{
+	"name": "ds_ABS_JSON_ls_adfbyexample_prac",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_adfbyexample_prac",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"Container": {
+				"type": "string"
+			},
+			"Directory": {
+				"type": "string",
+				"defaultValue": "."
+			},
+			"File": {
+				"type": "string",
+				"defaultValue": "."
+			}
+		},
+		"folder": {
+			"name": "chapter05"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": {
+					"value": "@dataset().File",
+					"type": "Expression"
+				},
+				"folderPath": {
+					"value": "@dataset().Directory",
+					"type": "Expression"
+				},
+				"fileSystem": {
+					"value": "@dataset().Container",
+					"type": "Expression"
+				}
+			}
+		},
+		"schema": {}
+	}
+}

@@ -1,5 +1,17 @@
 {
 	"name": "adf-prac-1984-instance",
+	"properties": {
+		"globalParameters": {
+			"Environment": {
+				"type": "string",
+				"value": "development"
+			},
+			"resourceGroup": {
+				"type": "string",
+				"value": "rg-dev-revenue-practice"
+			}
+		}
+	},
 	"location": "eastus2",
 	"identity": {
 		"type": "SystemAssigned",
