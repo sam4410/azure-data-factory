@@ -1,1 +1,10 @@
-{}
+{
+	"Environment": {
+		"type": "string",
+		"value": "development"
+	},
+	"resourceGroup": {
+		"type": "string",
+		"value": "rg-dev-revenue-practice"
+	}
+}
